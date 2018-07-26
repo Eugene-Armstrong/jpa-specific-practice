@@ -1,0 +1,224 @@
+{
+	"info": {
+		"name": "jpa-practices-single",
+		"_postman_id": "df7ce043-b064-1cc4-aab5-12ad048e8722",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create company",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"tw\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"companies"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "all companies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77922c5b-e16c-48cf-92b7-3f7f64ba6731",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"    pm.expect(jsonData.employees.length).to.eql(1);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"companies"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get compony by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c978dbd7-d7b2-4ce2-b886-1eb9d2b8e5b2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"    pm.expect(jsonData.name).to.eql(\"tw\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"companies",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update compony",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0aa8bbf-7785-4a72-acf2-3e07ddb93788",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8080/api/v1/companies/1\", function (err, response) {",
+							"    pm.test(\"Your test name\", function () {",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.id).to.eql(1);",
+							"        pm.expect(jsonData.name).to.eql(\"tw-oocl\");",
+							"});",
+							"    ",
+							"    ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 1,\n        \"name\": \"tw-oocl\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"companies",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ef6fc58-db7c-4785-84b0-c06c081aa74e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"http://localhost:8080/api/v1/companies\", function (err, response) {",
+							"    pm.test(\"Your test name\", function () {",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(0);",
+							"});",
+							"    ",
+							"    ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"companies",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
